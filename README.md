@@ -1,14 +1,4 @@
-# Missouri
-
-A Slack bot to streamline team standup without disturbing the overall flow of conversation.
-
-## Documentation links:
-
-- [Installation](documentation/installation.md)
-- [Admin](documentation/admin.md)
-- [Usage](documentation/interaction.md)
-- [Reports](documentation/reports.md)
-- [Glossary](documentation/glossary.md)
+# Missouri realtime Medicaid payments, coverage, and eligibility prototype
 
 ## Public domain
 
