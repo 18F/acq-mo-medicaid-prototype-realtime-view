@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build-css": "node-sass src/styles/main.scss --output dist/app.css",
     "build-js": "browserify -d -t [ babelify --presets [ react es2015 ] ] src/app.js -o dist/app.js",
     "build": "npm run build-js",
-    "watch": "watchify -d -t [ babelify --presets [ react es2015 ] ] src/app.js -v -o dist/app.js",
+    "watch-css": "node-sass -w src/styles/ -o dist/",
+    "watch-js": "watchify -d -t [ babelify --presets [ react es2015 ] ] src/app.js -v -o dist/app.js",
+    "watch": "npm run watch-css & npm run watch-js && fg",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -28,6 +31,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.0",
+    "node-sass": "^4.5.0",
     "watchify": "^3.9.0"
   }
 }
