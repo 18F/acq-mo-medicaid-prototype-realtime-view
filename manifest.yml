@@ -1,0 +1,12 @@
+---
+applications:
+  - name: missouri-medicaid-prototype-frontend
+    path: web/dist
+    memory: 64M
+    host: mo-medicaid-prototype
+    buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
+  - name: missouri-medicaid-prototype-api
+    path: api
+    memory: 128M
+    host: mo-medicaid-prototype-api
+    buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git

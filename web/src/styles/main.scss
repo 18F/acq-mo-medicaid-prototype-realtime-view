@@ -1,5 +1,35 @@
+@import "../../node_modules/uswds/src/stylesheets/all.scss";
+
+// Workaround for https://github.com/18F/web-design-standards/issues/1754
+@media screen and (min-width: 951px)
+{
+  .usa-nav {
+    height: auto;
+  }
+}
+
+header .usa-banner {
+  background-color: #cd2026;
+  * {
+    color: white;
+  }
+}
+
 body {
-  font-family: sans-serif;
-  color: white;
-  background: black;
+  background: #CCC;
+
+  #content {
+    max-width: 1200px;
+    min-height: 100vh;
+    margin: 0 auto;
+    background: white;
+  }
+
+  main {
+    padding: 2rem;
+  }
+}
+
+.usa-logo-text img {
+  max-height: 30px;
 }
