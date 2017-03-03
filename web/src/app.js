@@ -1,14 +1,20 @@
-import uswds from 'uswds';
+import 'uswds';
+import 'whatwg-fetch';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 import { Header, Footer, Login, LandingPage, Eligibility } from './components';
 import reducers from './reducers';
 
-const stateStore = createStore(reducers);
+const stateStore = createStore(
+  reducers,
+  applyMiddleware(thunk)
+);
 
 function App(props) {
   return (

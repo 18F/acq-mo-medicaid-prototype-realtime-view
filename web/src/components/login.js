@@ -51,7 +51,7 @@ class Login extends React.Component {
   }
 
   doLogin() {
-    this.props.setUser(this.state.username);
+    this.props.performLogin(this.state.username, this.state.password);
   }
 
   clearForm() {
@@ -87,8 +87,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setUser(username) {
-      dispatch(Actions.Login.setUser(username));
+    performLogin(username, password) {
+      dispatch(Actions.Login.login(username, password));
     }
   };
 }

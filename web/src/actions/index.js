@@ -1,12 +1,23 @@
-import fetch from 'fetch';
+import Frisbee from 'frisbee';
+
+const api = new Frisbee({
+  baseURI: 'http://localhost:8081',
+  headers: {
+    'Content-type': 'application/json'
+  }
+});
 
 export const Login = {
   messages: {
     SET_USER: 'set user object'
   },
 
-  setUser(username) {
-    return { type: Login.messages.SET_USER, user: { username }};
+  login(username, password) {
+    return (dispatch) => {
+      api.post('/login', { body: { username, password }}).then(res => {
+        dispatch({ type: Login.messages.SET_USER, user: res.body });
+      });
+    };
   }
 };
 
