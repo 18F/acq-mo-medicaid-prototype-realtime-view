@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { hashHistory } from 'react-router'
+import Actions from '../actions';
 
 class Login extends React.Component {
   constructor() {
@@ -25,6 +26,12 @@ class Login extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user) {
+      hashHistory.replace('/landing');
+    }
+  }
+
   setUsername(e) {
     this.setState({
       username: e.target.value
@@ -44,6 +51,7 @@ class Login extends React.Component {
   }
 
   doLogin() {
+    this.props.setUser(this.state.username);
   }
 
   clearForm() {
@@ -77,4 +85,12 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Login);
+function mapDispatchToProps(dispatch) {
+  return {
+    setUser(username) {
+      dispatch(Actions.Login.setUser(username));
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
