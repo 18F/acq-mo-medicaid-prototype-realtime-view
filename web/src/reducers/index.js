@@ -1,7 +1,5 @@
 const stateShape = {
-  routing: {
-    
-  }
+  user: false
 };
 
 export default function reducer(state = stateShape, action) {

@@ -5,7 +5,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import { Header, Footer, LandingPage, Eligibility } from './components';
+import { Header, Footer, Login, LandingPage, Eligibility } from './components';
 import reducers from './reducers';
 
 const stateStore = createStore(reducers);
@@ -26,8 +26,10 @@ ReactDOM.render(
   <Provider store={stateStore}>
     <Router history={hashHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={LandingPage} />
+        <IndexRoute component={Login} />
+        <Route path="/landing" component={LandingPage} />
         <Route path="/eligibility" component={Eligibility} />
+        <Route path="/eligibility/:participantID" component={Eligibility} />
       </Route>
     </Router>
   </Provider>,
