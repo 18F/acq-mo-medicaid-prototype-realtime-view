@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+require('./env');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
