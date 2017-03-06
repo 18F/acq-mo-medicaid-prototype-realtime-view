@@ -14,11 +14,11 @@ app.use((req, res, next) => {
   // exist.
   res.header('Access-Control-Allow-Origin', req.get('origin'));
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length');
+  res.header('Access-Control-Allow-Headers', 'Accepts, Authorization, Content-Length, Content-Type');
 
   if (req.method === 'OPTIONS') {
     // If it's an OPTIONS request, just bail out here.
-    res.send(200);
+    res.sendStatus(200);
   } else {
     next();
   }
