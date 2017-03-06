@@ -1,16 +1,9 @@
-const jwt = require('jsonwebtoken');
 require('./env');
+
 const express = require('express');
 const bodyParser = require('body-parser');
+const tokens = require('./tokens');
 const app = express();
-
-const JWT_SECRET = process.env.JWT_SECRET || (() => {
-  const buffer = Buffer.alloc(128);
-  for (let i = 0; i < buffer.length; i++) {
-    buffer.writeUInt8(Math.floor(Math.random() * 256), i);
-  }
-  return buffer.toString('hex');
-})();
 
 app.use((req, res, next) => {
   // Note that the proper thing to do here is actually
@@ -36,7 +29,7 @@ app.use((req, res, next) => {
     try {
       // Attach the user object to the request, so it can
       // easily be checked elsewhere.
-      req.user = jwt.verify(req.headers.authorization, JWT_SECRET, { algorithm: 'HS512' });
+      req.user = tokens.getUserFromToken(req.headers.authorization);
     } catch(e) {
       // If there's an authorization token that we can't
       // verify, send back a 401 and bail out of the
@@ -59,7 +52,7 @@ app.post('/login', (req, res) => {
     username: req.body.username,
     claims: []
   };
-  const token = jwt.sign(user, JWT_SECRET, { expiresIn: '2h', algorithm: 'HS512' });
+  const token = tokens.createTokenFromUser(user);
 
   res.send({
     realName: 'Jane Doe',
