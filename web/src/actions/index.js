@@ -1,11 +1,5 @@
 import Frisbee from 'frisbee';
-
-const api = new Frisbee({
-  baseURI: 'http://localhost:8081',
-  headers: {
-    'Content-type': 'application/json'
-  }
-});
+import { api } from '../api';
 
 export const Login = {
   messages: {
@@ -14,7 +8,7 @@ export const Login = {
 
   login(username, password) {
     return (dispatch) => {
-      api.post('/login', { body: { username, password }}).then(res => {
+      api().post('/login', { body: { username, password }}).then(res => {
         dispatch({ type: Login.messages.SET_USER, user: res.body });
       });
     };
