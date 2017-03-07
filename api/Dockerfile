@@ -6,4 +6,4 @@ WORKDIR /app
 ADD ./package.json .
 RUN npm install
 
-CMD npm start-dev
+CMD npm run start-dev
