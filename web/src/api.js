@@ -14,10 +14,10 @@ export const api = () => {
 
 export const setAPIHeader = (name, value) => {
   headers[name] = value;
+  internalAPI = new Frisbee({ baseURI, headers });
+};
 
-  // Do this to remove any headers that have been set
-  // to a non-JSONy value (e.g., undefined)
-  headers = JSON.parse(JSON.stringify(headers));
-
+export const removeAPIHeader = (name) => {
+  delete headers[name];
   internalAPI = new Frisbee({ baseURI, headers });
 };

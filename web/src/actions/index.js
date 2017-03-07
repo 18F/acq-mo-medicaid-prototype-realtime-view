@@ -1,5 +1,5 @@
 import Frisbee from 'frisbee';
-import { api, setAPIHeader } from '../api';
+import { api, removeAPIHeader } from '../api';
 
 export const Login = {
   messages: {
@@ -25,7 +25,7 @@ export const Login = {
         if (res.status === 200) {
           dispatch({ type: Login.messages.SET_USER, user: res.body });
         } else {
-          setAPIHeader('Authorization', undefined);
+          removeAPIHeader('Authorization');
         }
       })
     };

@@ -2,7 +2,7 @@ import updeep from 'updeep';
 import cookies from 'react-cookie';
 import { hashHistory } from 'react-router';
 import Actions from '../actions';
-import { setAPIHeader } from '../api';
+import { setAPIHeader, removeAPIHeader } from '../api';
 
 const stateShape = {
   user: false,
@@ -22,7 +22,7 @@ export default function reducer(state = stateShape, action) {
     case Actions.Login.messages.LOGOUT:
       newState = updeep({ user: false }, newState);
       cookies.remove('token');
-      setAPIHeader('Authorization', undefined);
+      removeAPIHeader('Authorization');
       hashHistory.replace('/');
       break;
 
