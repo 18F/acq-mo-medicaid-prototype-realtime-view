@@ -1,3 +1,9 @@
+/* eslint no-script-url: 0 */
+// [TODO] This rule is good and should be enabled when actual
+// links are identified.  In the meantime, the javascript:void();
+// pattern is a good one for making links that the browser doesn't
+// try to navigate through.
+
 import React from 'react';
 
 export default function footer() {
@@ -39,11 +45,11 @@ export default function footer() {
       <div className="usa-footer-secondary_section">
         <div className="usa-grid">
           <div className="usa-footer-logo">
-            <img className="usa-footer-slim-logo-img" src="/images/modss.png" alt="Logo image"/>
+            <img className="usa-footer-slim-logo-img" src="/images/modss.png" alt="missouri department of social services logo" />
             <h3 className="usa-footer-slim-logo-heading">Missouri Department of Social Services</h3>
           </div>
         </div>
       </div>
     </footer>
   );
-};
+}

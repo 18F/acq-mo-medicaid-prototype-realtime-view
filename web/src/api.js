@@ -1,16 +1,14 @@
 import Frisbee from 'frisbee';
 
 const baseURI = 'http://localhost:8081';
-let headers = {
-  'Accepts': 'application/json',
+const headers = {
+  Accepts: 'application/json',
   'Content-Type': 'application/json'
 };
 
 let internalAPI = new Frisbee({ baseURI, headers });
 
-export const api = () => {
-  return internalAPI;
-};
+export const api = () => internalAPI;
 
 export const setAPIHeader = (name, value) => {
   headers[name] = value;

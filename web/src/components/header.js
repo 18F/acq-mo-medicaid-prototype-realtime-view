@@ -85,7 +85,7 @@ function header(props) {
           <button className="usa-menu-btn">Menu</button>
           <div className="usa-logo" id="logo">
             <em className="usa-logo-text">
-              <a href="#" accessKey="1" title="Home" aria-label="Home"><img src="/images/modss.png" />MO HealthNet</a>
+              <Link to="/" title="Home" aria-label="Home"><img src="/images/modss.png" alt="" />MO HealthNet</Link>
             </em>
           </div>
         </div>
@@ -93,11 +93,15 @@ function header(props) {
       </div>
     </header>
   );
+}
+
+header.propTypes = {
+  user: React.PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user !== false
   };
 }
 

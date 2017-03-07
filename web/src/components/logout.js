@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { Login as loginActions } from '../actions';
 
@@ -12,7 +11,7 @@ function mapDispatchToProps(dispatch) {
     logout() {
       dispatch(loginActions.logout());
     }
-  }
+  };
 }
 
 export default connect(null, mapDispatchToProps)(logout);

@@ -30,16 +30,20 @@ function App(props) {
   return (
     <div>
       <Header />
-        <main>
-          {props.children}
-        </main>
+      <main>
+        {props.children}
+      </main>
       <Footer />
     </div>
   );
 }
 
+App.propTypes = {
+  children: React.PropTypes.element.isRequired
+};
+
 function requireLogin(Component) {
-  return () => (<LoginRedirect><Component/></LoginRedirect>);
+  return () => (<LoginRedirect><Component /></LoginRedirect>);
 }
 
 ReactDOM.render(

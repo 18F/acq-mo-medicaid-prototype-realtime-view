@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { hashHistory } from 'react-router'
-import Actions from '../actions';
+import { hashHistory } from 'react-router';
+import { Login as LoginActions } from '../actions';
 
 class Login extends React.Component {
   constructor() {
@@ -79,6 +79,15 @@ class Login extends React.Component {
   }
 }
 
+Login.propTypes = {
+  user: React.PropTypes.shape(),
+  performLogin: React.PropTypes.func.isRequired
+};
+
+Login.defaultProps = {
+  user: false
+};
+
 function mapStateToProps(state) {
   return {
     user: state.user
@@ -88,7 +97,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     performLogin(username, password) {
-      dispatch(Actions.Login.login(username, password));
+      dispatch(LoginActions.login(username, password));
     }
   };
 }

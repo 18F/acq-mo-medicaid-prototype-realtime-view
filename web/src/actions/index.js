@@ -1,4 +1,3 @@
-import Frisbee from 'frisbee';
 import { api, removeAPIHeader } from '../api';
 
 export const Login = {
@@ -9,7 +8,7 @@ export const Login = {
 
   login(username, password) {
     return (dispatch) => {
-      api().post('/login', { body: { username, password }}).then(res => {
+      api().post('/login', { body: { username, password } }).then((res) => {
         dispatch({ type: Login.messages.SET_USER, user: res.body });
       });
     };
@@ -21,13 +20,13 @@ export const Login = {
 
   getUserInfo() {
     return (dispatch) => {
-      api().get('/login').then(res => {
+      api().get('/login').then((res) => {
         if (res.status === 200) {
           dispatch({ type: Login.messages.SET_USER, user: res.body });
         } else {
           removeAPIHeader('Authorization');
         }
-      })
+      });
     };
   }
 };
