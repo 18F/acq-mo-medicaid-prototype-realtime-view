@@ -7,14 +7,24 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import cookies from 'react-cookie';
+import { setAPIHeader } from './api';
+import { Login as LoginAction } from './actions';
 
 import { Header, Footer, Login, LandingPage, Eligibility, Coverage, LoginRedirect } from './components';
+
 import reducers from './reducers';
 
 const stateStore = createStore(
   reducers,
   applyMiddleware(thunk)
 );
+
+const tokenFromCookie = cookies.load('token');
+if (tokenFromCookie) {
+  setAPIHeader('Authorization', tokenFromCookie);
+  stateStore.dispatch(LoginAction.getUserInfo());
+}
 
 function App(props) {
   return (
