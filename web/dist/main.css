@@ -3370,6 +3370,9 @@ header .usa-banner {
   header .usa-banner * {
     color: white; }
 
+.usa-logo-text img {
+  max-height: 30px; }
+
 body {
   background: #CCC; }
   body #content {
@@ -3379,6 +3382,9 @@ body {
     background: white; }
   body main {
     padding: 2rem; }
-
-.usa-logo-text img {
-  max-height: 30px; }
+  body .prototype-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: white;
+    border: 1px solid black; }

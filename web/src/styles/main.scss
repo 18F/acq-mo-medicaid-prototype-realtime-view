@@ -15,6 +15,10 @@ header .usa-banner {
   }
 }
 
+.usa-logo-text img {
+  max-height: 30px;
+}
+
 body {
   background: #CCC;
 
@@ -28,8 +32,12 @@ body {
   main {
     padding: 2rem;
   }
-}
 
-.usa-logo-text img {
-  max-height: 30px;
+  .prototype-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: white;
+    border: 1px solid black;
+  }
 }
