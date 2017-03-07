@@ -22,13 +22,13 @@ class Login extends React.Component {
 
   componentWillMount() {
     if (this.props.user) {
-      hashHistory.replace('/landing');
+      hashHistory.replace('/');
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.user) {
-      hashHistory.replace('/landing');
+      hashHistory.replace('/');
     }
   }
 

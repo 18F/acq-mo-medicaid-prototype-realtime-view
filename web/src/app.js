@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-import { Header, Footer, Login, LandingPage, Eligibility } from './components';
+import { Header, Footer, Login, LandingPage, Eligibility, LoginRedirect } from './components';
 import reducers from './reducers';
 
 const stateStore = createStore(
@@ -28,14 +28,19 @@ function App(props) {
   );
 }
 
+function requireLogin(component) {
+  return () => (<LoginRedirect>{component}</LoginRedirect>);
+}
+
 ReactDOM.render(
   <Provider store={stateStore}>
     <Router history={hashHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={Login} />
-        <Route path="/landing" component={LandingPage} />
-        <Route path="/eligibility" component={Eligibility} />
-        <Route path="/eligibility/:participantID" component={Eligibility} />
+        <IndexRoute component={requireLogin(LandingPage)} />
+        <Route path="/landing" component={requireLogin(LandingPage)} />
+        <Route path="/eligibility" component={requireLogin(Eligibility)} />
+        <Route path="/eligibility/:participantID" component={requireLogin(Eligibility)} />
+        <Route path="/login" component={Login} />
       </Route>
     </Router>
   </Provider>,
