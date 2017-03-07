@@ -1,6 +1,7 @@
 import Frisbee from 'frisbee';
+import env from './env.json';
 
-const baseURI = 'http://localhost:8081';
+const baseURI = env.API_ADDRESS;
 const headers = {
   Accepts: 'application/json',
   'Content-Type': 'application/json'
