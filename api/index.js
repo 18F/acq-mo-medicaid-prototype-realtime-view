@@ -1,11 +1,9 @@
 require('./env');
-
 const express = require('express');
-const tokens = require('./tokens');
-const app = express();
 const middleware = require('./middleware');
 const routes = require('./routes');
 
+const app = express();
 middleware(app);
 routes(app);
 
