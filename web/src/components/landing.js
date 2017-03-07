@@ -5,14 +5,18 @@ import Coverage from './coverage';
 
 export default function landingPage() {
   return (
-    <div>
+    <div className="landing-page">
       <h1>Overview</h1>
 
-      <h2>Eligibility</h2>
-      <Eligibility />
+      <section className="landing-component">
+        <h2>Eligibility</h2>
+        <Eligibility />
+      </section>
 
-      <h2>Coverage</h2>
-      <Coverage />
+      <section className="landing-component">
+        <h2>Coverage</h2>
+        <Coverage />
+      </section>
     </div>
   );
 };

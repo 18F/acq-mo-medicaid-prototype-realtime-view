@@ -3382,9 +3382,5 @@ body {
     background: white; }
   body main {
     padding: 2rem; }
-  body .prototype-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background: white;
-    border: 1px solid black; }
+    body main div.landing-page section.landing-component {
+      margin-left: 2rem; }
