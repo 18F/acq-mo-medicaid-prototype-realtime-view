@@ -28,8 +28,8 @@ function App(props) {
   );
 }
 
-function requireLogin(component) {
-  return () => (<LoginRedirect>{component}</LoginRedirect>);
+function requireLogin(Component) {
+  return () => (<LoginRedirect><Component/></LoginRedirect>);
 }
 
 ReactDOM.render(
