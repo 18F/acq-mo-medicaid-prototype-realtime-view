@@ -1,7 +1,7 @@
 import updeep from 'updeep';
 import cookies from 'react-cookie';
 import Actions from '../actions';
-import { setHeader } from '../api';
+import { setAPIHeader } from '../api';
 
 const stateShape = {
   user: false,
@@ -15,7 +15,7 @@ export default function reducer(state = stateShape, action) {
     case Actions.Login.messages.SET_USER:
       newState = updeep({ user: action.user }, newState);
       cookies.save('token', action.user.token);
-      setHeader('Authorization', action.user.token);
+      setAPIHeader('Authorization', action.user.token);
       break;
 
     default:

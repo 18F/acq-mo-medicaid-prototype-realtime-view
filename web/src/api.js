@@ -12,7 +12,7 @@ export const api = () => {
   return internalAPI;
 };
 
-export const setHeader = (name, value) => {
+export const setAPIHeader = (name, value) => {
   headers[name] = value;
   internalAPI = new Frisbee({ baseURI, headers });
 };
