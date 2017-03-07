@@ -1,5 +1,6 @@
 import updeep from 'updeep';
 import cookies from 'react-cookie';
+import { hashHistory } from 'react-router';
 import Actions from '../actions';
 import { setAPIHeader } from '../api';
 
@@ -16,6 +17,13 @@ export default function reducer(state = stateShape, action) {
       newState = updeep({ user: action.user }, newState);
       cookies.save('token', action.user.token);
       setAPIHeader('Authorization', action.user.token);
+      break;
+
+    case Actions.Login.messages.LOGOUT:
+      newState = updeep({ user: false }, newState);
+      cookies.remove('token');
+      setAPIHeader('Authorization', undefined);
+      hashHistory.replace('/');
       break;
 
     default:

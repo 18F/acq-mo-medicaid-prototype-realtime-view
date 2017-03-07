@@ -11,7 +11,7 @@ import cookies from 'react-cookie';
 import { setAPIHeader } from './api';
 import { Login as LoginAction } from './actions';
 
-import { Header, Footer, Login, LandingPage, Eligibility, Coverage, LoginRedirect } from './components';
+import { Header, Footer, Login, Logout, LandingPage, Eligibility, Coverage, LoginRedirect } from './components';
 
 import reducers from './reducers';
 
@@ -52,6 +52,7 @@ ReactDOM.render(
         <Route path="/eligibility/:participantID" component={requireLogin(Eligibility)} />
         <Route path="/coverage" component={requireLogin(Coverage)} />
         <Route path="/login" component={Login} />
+        <Route path="/logout" component={Logout} />
       </Route>
     </Router>
   </Provider>,

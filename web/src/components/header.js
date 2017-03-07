@@ -44,6 +44,12 @@ function getNavigationLinks(user) {
               <span>Payments</span>
             </Link>
           </li>
+
+          <li>
+            <Link className="usa-nav-link" to="/logout">
+              <span>Logout</span>
+            </Link>
+          </li>
         </ul>
         {
         // <form className="usa-search usa-search-small">

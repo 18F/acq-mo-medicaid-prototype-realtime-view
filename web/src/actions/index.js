@@ -3,7 +3,8 @@ import { api, setAPIHeader } from '../api';
 
 export const Login = {
   messages: {
-    SET_USER: 'set user object'
+    SET_USER: 'set user object',
+    LOGOUT: 'log user out'
   },
 
   login(username, password) {
@@ -12,6 +13,10 @@ export const Login = {
         dispatch({ type: Login.messages.SET_USER, user: res.body });
       });
     };
+  },
+
+  logout() {
+    return { type: Login.messages.LOGOUT };
   },
 
   getUserInfo() {
