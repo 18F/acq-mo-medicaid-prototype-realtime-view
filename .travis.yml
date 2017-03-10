@@ -1,13 +1,15 @@
 language: node_js
 node_js:
-  - '6.9'
-
+- '6.9'
 service:
-  - docker
-
+- docker
+env:
+  global:
+  - CF_USERNAME: 7d8615d2-748e-4027-b474-42ddd4ef8b0e
+  - secure: FaTVhYTX+uBX7r/x1oHWbWsTi/FQ/HziufYpEe7BPMv2mO5glk5tsQMqTeuMppa1DfUMssQEot7kCGXIeSBIBwCK28sXdpuJ/0UflSBGoYqPDlzwv1jMqHOsfkRdemR1Wlq1LIjf7I6QV1pNv/W3pQHvWt0wjhjp0ufui9b5bp403BNj7tOAVirDd5fyxDN+FpyO1ccIQjn1XitnlF0+mhIMX6uoTbWgrUe+EbOtiGWRU4lsJZDt3JYbFQPA3NH/VHKBzqVsP4wi2+f9x9bUm6rdWhnNT3Iy9Ed1keRfadsU4fnVIngnjkYERR6YH7llu93CRSPR1KnpRG29yDutKQsMvcCecqFcBIjuoqVVhXNja5C9gPJ/jQYIhbCq2Wn5trvC1tgx/Ebpq+YiPSQGEglRcwnvRVeYIfXYYmJ3G9p+5y+1DtYjefnKX/L/kpfRCbR80DmdfS/P37MzVfJtvIWXqNlLlKdeWSCXKAslwwPVp4OP8NcLLswhve1g0xFoAJxL6JH8spUWRlzj0SBb8AvsEVxE2e8P9FHMeCGs25+sEUZ+7d+gjYfcuXvu/FTElb7iz94/RZJ8/ADY3K6VhVdDKMA52LOg17b6A8h+JrGw1Uh9zdLha94HBLPQdUObB4QOQvlYN69WWsEsGGWGPVOS6+nJ5bS9n7E3ff93RXY=
 deploy:
-  - provider: script
-    script: "./bin/deploy.sh"
-    skip_cleanup: true
-    on:
-      branch: master
+- provider: script
+  script: ./bin/deploy.sh
+  skip_cleanup: true
+  on:
+    branch: master
