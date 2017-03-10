@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-css": "node-sass src/styles/main.scss --output dist/app.css",
+    "build-css": "node-sass src/styles/main.scss --output dist",
     "build-js": "browserify -d -t [ babelify --presets [ react es2015 ] ] src/app.js -o dist/app.js",
-    "build": "npm run build-js",
+    "build": "npm run build-css && npm run build-js",
     "watch-css": "node-sass -w src/styles/ -o dist/",
     "watch-js": "watchify -d -t [ babelify --presets [ react es2015 ] ] src/app.js -v -o dist/app.js",
     "watch": "npm run watch-css & npm run watch-js && fg",
     "lint": "eslint --fix 'src/**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ":"
   },
   "keywords": [],
   "author": "",

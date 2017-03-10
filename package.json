@@ -1,0 +1,29 @@
+{
+  "name": "prototype-realtime-view",
+  "version": "1.0.0",
+  "description": "## Running locally",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --fix 'api/middleware/**/*.js' 'api/routes/**/*.js' 'api/*.js' 'web/src/**/*.js'",
+    "test": ":"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/18F/acq-mo-medicaid-prototype-realtime-view.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/18F/acq-mo-medicaid-prototype-realtime-view/issues"
+  },
+  "homepage": "https://github.com/18F/acq-mo-medicaid-prototype-realtime-view#readme",
+  "dependencies": {
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-config-airbnb-base": "^11.1.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0"
+  }
+}
