@@ -10,6 +10,9 @@ install:
 - cd ../web
 - npm install
 - cd ..
+after_success:
+- npm install codecov
+- codecov
 env:
   global:
   - CF_USERNAME: 7d8615d2-748e-4027-b474-42ddd4ef8b0e
