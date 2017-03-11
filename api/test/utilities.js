@@ -15,6 +15,7 @@ module.exports.getMockHandlerArguments = () => {
     },
     res: {
       header: sinon.spy(),
+      send: sinon.spy(),
       sendStatus: sinon.spy(),
       status: sinon.stub().returns(statusSend),
       statusSend
