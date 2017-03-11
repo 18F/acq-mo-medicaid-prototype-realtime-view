@@ -11,7 +11,7 @@ tape.test('middleware/cors', (test) => {
       use: sinon.spy()
     };
 
-    corsModule(app);
+    corsModule(app, null);
     initTest.ok(app.use.calledOnce, 'app.use is called once');
     initTest.equal(typeof app.use.args[0][0], 'function', 'called with a function');
     initTest.end();
@@ -22,7 +22,25 @@ tape.test('middleware/cors', (test) => {
       use: sinon.spy()
     };
 
-    corsModule(app);
+    const schema = {
+      paths: {
+        '/test1': {
+          get: { },
+          post: { }
+        },
+        '/test2': {
+          get: { },
+          put: { }
+        }
+      }
+    };
+
+    const expectedMethods = {
+      '/test1': 'GET,POST',
+      '/test2': 'GET,PUT'
+    };
+
+    corsModule(app, schema);
     const handler = app.use.args[0][0];
 
     const setsHeaders = (req, res, setsHeadersTest) => {
@@ -30,12 +48,23 @@ tape.test('middleware/cors', (test) => {
       setsHeadersTest.ok(req.get.calledWith('origin'), 'gets the ORIGIN request header');
       setsHeadersTest.equal(res.header.callCount, 3, 'three headers were set');
       setsHeadersTest.ok(res.header.calledWith('Access-Control-Allow-Origin', utils.requestOrigin), 'Access-Control-Allow-Origin header is set to request origin');
-      setsHeadersTest.ok(res.header.calledWith('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS'), 'Access-Control-Allow-Methods header is set to the allowed methods');
+      setsHeadersTest.ok(res.header.calledWith('Access-Control-Allow-Methods', expectedMethods[req.url]), 'Access-Control-Allow-Methods header is set to the allowed methods');
       setsHeadersTest.ok(res.header.calledWith('Access-Control-Allow-Headers', 'Accepts, Authorization, Content-Length, Content-Type'), 'Access-Control-Allow-Headers header is set to the allowed headers');
     };
 
+    headersTest.test('where the path is not supported', (unsupportedPathTest) => {
+      const mocks = utils.getMockHandlerArguments();
+      mocks.req.url = '/unsupported-path';
+      handler(mocks.req, mocks.res, mocks.next);
+      unsupportedPathTest.ok(mocks.res.sendStatus.calledOnce, 'HTTP response status is set once');
+      unsupportedPathTest.ok(mocks.res.sendStatus.calledWith(404), 'HTTP status code 404 is sent');
+      unsupportedPathTest.ok(mocks.next.notCalled, 'next is not called');
+      unsupportedPathTest.end();
+    });
+
     headersTest.test('where the method is not OPTIONS', (notOptionsRequestTest) => {
       const mocks = utils.getMockHandlerArguments();
+      mocks.req.url = '/test1';
       handler(mocks.req, mocks.res, mocks.next);
       setsHeaders(mocks.req, mocks.res, notOptionsRequestTest);
       notOptionsRequestTest.ok(mocks.next.calledOnce, 'next is called');
@@ -44,6 +73,7 @@ tape.test('middleware/cors', (test) => {
 
     headersTest.test('where the method is OPTIONS', (optionsRequestTest) => {
       const mocks = utils.getMockHandlerArguments();
+      mocks.req.url = '/test2';
       mocks.req.method = 'OPTIONS';
       handler(mocks.req, mocks.res, mocks.next);
       setsHeaders(mocks.req, mocks.res, optionsRequestTest);

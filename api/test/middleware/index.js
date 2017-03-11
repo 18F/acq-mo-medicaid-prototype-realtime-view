@@ -10,7 +10,7 @@ tape.test('middleware/index', (test) => {
       use: sinon.spy()
     };
 
-    compositeModule(app);
+    compositeModule(app, null);
     initTest.equal(app.use.callCount, 4, 'app.use is called four times');
     initTest.equal(typeof app.use.args[0][0], 'function', 'called with a function the first time');
     initTest.equal(typeof app.use.args[1][0], 'function', 'called with a function the second time');
