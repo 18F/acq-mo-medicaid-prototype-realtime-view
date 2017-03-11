@@ -54,10 +54,10 @@ tape.test('middleware/token', (test) => {
       process.env.TOKEN_SIGNATURE_ALGORITHM = 'HS256';
       const mocks = util.getMockHandlerArguments();
       mocks.req.user = 'something';
-      mocks.req.headers.authorization = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJqdGkiOiJkMTgyODA1NC0xNmRiLTQ0NjYtYThkYy1kMzI3ZjFiNmZlYTAiLCJpYXQiOjE0ODkxODUyMzUsImV4cCI6MTQ4OTE4ODgzNX0.c_VBhW_oq-YZAgNbH5Sfhia1XaLUICAbfKj1AL1yroM';
+      mocks.req.headers.authorization = util.validAuthorizationToken;
       handler(mocks.req, mocks.res, mocks.next);
       validAuthorizationTest.ok(mocks.req.user, 'sets the request user object');
-      validAuthorizationTest.equal(mocks.req.user.username, 'test', 'derives the correct user object');
+      validAuthorizationTest.deepEqual(mocks.req.user, util.validAuthorizationObject, 'derives the correct user object');
       validAuthorizationTest.ok(mocks.next.calledOnce, 'next is called one time');
       validAuthorizationTest.ok(mocks.res.status.notCalled, 'response HTTP status not set');
       validAuthorizationTest.end();
