@@ -1,0 +1,117 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Missouri Medicaid Prototype API",
+    "description": "Prototype API for retrieving data from Missouri Medicaid systems and providing it to consumers in a modern, RESTful way.",
+    "version": "1.0.0"
+  },
+  "host": "missouri-medicaid-prototype-api.app.cloud.gov",
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/",
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/login": {
+      "get": {
+        "summary": "Get user for an existing token",
+        "description": "If the Authorization header is set and it's a valid JWT token\nsigned by the API, this endpoint will decode it and return the\nuser object that it represents.\n",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "JWT token representing a user",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "authentication"
+        ],
+        "responses": {
+          "200": {
+            "description": "The user represented by the token",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "If the authorization header is missing, is not a valid JWT\ntoken, was not signed by the API, or is expired, the API\nwill return a 401 status code.\n",
+            "schema": {
+              "type": "string",
+              "description": "A message indicating that the user is not logged in"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "[DUMMY] Log in with username and password",
+        "description": "Send a username and password, get back a user object",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "formData",
+            "description": "Login username. Currently can be any value.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Login password. Currently can be any value.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "DUMMY",
+          "authentication"
+        ],
+        "responses": {
+          "200": {
+            "description": "Currently always responds in the affirmative with a dummy user object",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "realName": {
+          "type": "string",
+          "description": "The user's real name as an arbitrary string.",
+          "required": true
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "participant",
+            "provider",
+            "state"
+          ],
+          "description": "The user's role in the system",
+          "required": true
+        },
+        "eligibility": {
+          "$ref": "#/definitions/Eligibility",
+          "required": true
+        },
+        "token": {
+          "type": "string",
+          "description": "JWT token representing the user",
+          "required": true
+        }
+      }
+    },
+    "Eligibility": {
+      "type": "object"
+    }
+  }
+}
