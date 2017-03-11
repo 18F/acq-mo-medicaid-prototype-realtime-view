@@ -40,6 +40,7 @@ tape.test('tokens', (test) => {
   test.test('createTokenFromUser', (createTokenFromUser) => {
     process.env.JWT_SECRET = 'secret';
     process.env.TOKEN_SIGNATURE_ALGORITHM = 'HS256';
+    process.env.TOKEN_EXPIRE_TIME = '2h';
     const token = tokensModule.createTokenFromUser(utils.validAuthorizationObject);
     createTokenFromUser.ok(token, 'returns a token');
     createTokenFromUser.ok(/[a-zA-Z0-9]+\.[a-zA-Z0-9]+\.[a-zA-Z0-9]+/.test(token), 'token has valid structure');
