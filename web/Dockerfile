@@ -6,4 +6,7 @@ WORKDIR /app
 ADD ./package.json .
 RUN npm install
 
-CMD npm run watch
+RUN mkdir dist
+ADD ./src/index.html dist
+
+CMD npm run start

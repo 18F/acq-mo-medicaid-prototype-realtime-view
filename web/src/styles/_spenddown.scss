@@ -1,0 +1,43 @@
+.spenddown {
+  .box {
+    padding: 1rem;
+
+    &.blue {
+      background: $primary-alt-lightest;
+    }
+
+    &.gray {
+      background: $gray-lightest;
+    }
+  }
+
+  .big {
+    font-size: 1.5em;
+  }
+
+  th, td {
+    background-color: transparent;
+  }
+
+  .payment-table {
+    margin: 0;
+
+    th {
+      width: 1%;
+      white-space: nowrap;
+    }
+
+    th, td {
+      border: 0;
+      padding: 0;
+
+      h6 {
+        margin: 0;
+      }
+    }
+
+    td {
+      padding-left: 3em;
+    }
+  }
+}

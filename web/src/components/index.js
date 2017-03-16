@@ -1,12 +1,19 @@
 import Header from './header';
 import Footer from './footer';
 
-import LandingPage from './landing';
-import Eligibility from './eligibility';
+import Login from './login';
+import Logout from './logout';
+import DCNLookup from './dcnLookup';
+import Spenddown from './spenddown';
+
+import LoginRedirect from './redirectIfNotLoggedIn';
 
 export {
   Header,
   Footer,
-  LandingPage,
-  Eligibility
+  Login,
+  Logout,
+  DCNLookup,
+  Spenddown,
+  LoginRedirect
 };
