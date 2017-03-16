@@ -6,6 +6,9 @@
   }
 }
 
+$primary-alt-lightest: #e1f3f8;
+$gray-lightest: #f1f1f1;
+
 header .usa-banner {
   background-color: #cd2026;
   * {
@@ -18,18 +21,16 @@ header .usa-banner {
 }
 
 body {
-  background: #CCC;
+  background: white;
 
   #content {
     max-width: 1200px;
     min-height: 100vh;
     margin: 0 auto;
-    background: white;
   }
 
   main {
-    padding: 2rem;
-
     @import "landing";
+    @import "spenddown";
   }
 }

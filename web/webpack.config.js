@@ -10,6 +10,11 @@ module.exports = {
     filename: 'app.js'
   },
   devtool: 'inline-source-map',
+  watchOptions: {
+    // Polling is necessary because the Mac docker client doesn't raise
+    // all of the fs events that webpack is expecting
+    poll: 1000
+  },
   module: {
     rules: [
       {

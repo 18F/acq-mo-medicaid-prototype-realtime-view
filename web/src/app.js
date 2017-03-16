@@ -13,7 +13,7 @@ import { Login as LoginAction } from './actions';
 
 import '../node_modules/uswds/src/stylesheets/uswds.scss';
 import './styles/main.scss';
-import { Header, Footer, Login, Logout, LandingPage, Eligibility, Coverage, LoginRedirect } from './components';
+import { Header, Footer, Login, Logout, LandingPage, DCNLookup, Spenddown, Eligibility, Coverage, LoginRedirect } from './components';
 
 import reducers from './reducers';
 
@@ -31,11 +31,9 @@ if (tokenFromCookie) {
 function App(props) {
   return (
     <div>
-      <Header />
       <main>
         {props.children}
       </main>
-      <Footer />
     </div>
   );
 }
@@ -45,14 +43,17 @@ App.propTypes = {
 };
 
 function requireLogin(Component) {
-  return () => (<LoginRedirect><Component /></LoginRedirect>);
+  // return () => (<LoginRedirect><Component /></LoginRedirect>);
+  // For now, disable login
+  return () => (<Component />);
 }
 
 ReactDOM.render(
   <Provider store={stateStore}>
     <Router history={hashHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={requireLogin(LandingPage)} />
+        <IndexRoute component={requireLogin(DCNLookup)} />
+        <Route path="/spenddown/:dcn" component={requireLogin(Spenddown)} />
         <Route path="/landing" component={requireLogin(LandingPage)} />
         <Route path="/eligibility" component={requireLogin(Eligibility)} />
         <Route path="/eligibility/:participantID" component={requireLogin(Eligibility)} />
