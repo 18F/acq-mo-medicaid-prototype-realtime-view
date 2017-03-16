@@ -5,6 +5,7 @@
 // try to navigate through.
 
 import React from 'react';
+import { logo } from '../static';
 
 export default function footer() {
   return (
@@ -45,7 +46,7 @@ export default function footer() {
       <div className="usa-footer-secondary_section">
         <div className="usa-grid">
           <div className="usa-footer-logo">
-            <img className="usa-footer-slim-logo-img" src="/images/modss.png" alt="missouri department of social services logo" />
+            <img className="usa-footer-slim-logo-img" src={logo} alt="missouri department of social services logo" />
             <h3 className="usa-footer-slim-logo-heading">Missouri Department of Social Services</h3>
           </div>
         </div>

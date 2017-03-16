@@ -11,6 +11,8 @@ import cookies from 'react-cookie';
 import { setAPIHeader } from './api';
 import { Login as LoginAction } from './actions';
 
+import '../node_modules/uswds/src/stylesheets/uswds.scss';
+import './styles/main.scss';
 import { Header, Footer, Login, Logout, LandingPage, Eligibility, Coverage, LoginRedirect } from './components';
 
 import reducers from './reducers';

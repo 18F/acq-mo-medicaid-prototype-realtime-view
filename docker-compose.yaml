@@ -12,20 +12,10 @@ services:
     ports:
       - '8081:8000'
 
-  frontend-build:
+  web:
     build: ./web
     volumes:
       - ./web:/app
       - /app/node_modules
-    environment:
-      API_URL: https://api:8000
-      PORT: 8000
     ports:
-      - 8000:8000
-
-  web:
-    image: abiosoft/caddy
-    volumes:
-      - ./web/dist:/srv
-    ports:
-      - '8080:2015'
+      - 8080:8000

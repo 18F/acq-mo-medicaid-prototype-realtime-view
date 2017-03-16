@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
+import { logo } from '../static';
+
 function getNavigationLinks(user) {
   if (user) {
     return (
@@ -85,7 +87,7 @@ function header(props) {
           <button className="usa-menu-btn">Menu</button>
           <div className="usa-logo" id="logo">
             <em className="usa-logo-text">
-              <Link to="/" title="Home" aria-label="Home"><img src="/images/modss.png" alt="" />MO HealthNet</Link>
+              <Link to="/" title="Home" aria-label="Home"><img src={logo} alt="" />MO HealthNet</Link>
             </em>
           </div>
         </div>
