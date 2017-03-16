@@ -13,7 +13,7 @@ import { Login as LoginAction } from './actions';
 
 import '../node_modules/uswds/src/stylesheets/uswds.scss';
 import './styles/main.scss';
-import { Header, Footer, Login, Logout, LandingPage, DCNLookup, Spenddown, Eligibility, Coverage, LoginRedirect } from './components';
+import { DCNLookup, Spenddown } from './components';
 
 import reducers from './reducers';
 
@@ -54,12 +54,6 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRoute component={requireLogin(DCNLookup)} />
         <Route path="/spenddown/:dcn" component={requireLogin(Spenddown)} />
-        <Route path="/landing" component={requireLogin(LandingPage)} />
-        <Route path="/eligibility" component={requireLogin(Eligibility)} />
-        <Route path="/eligibility/:participantID" component={requireLogin(Eligibility)} />
-        <Route path="/coverage" component={requireLogin(Coverage)} />
-        <Route path="/login" component={Login} />
-        <Route path="/logout" component={Logout} />
       </Route>
     </Router>
   </Provider>,
