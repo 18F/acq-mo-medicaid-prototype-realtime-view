@@ -1,14 +1,3 @@
-module.exports = function loginRoute(app) {
-  app.get('/client/:dcn', (req, res) => {
-    const dcn = req.params.dcn;
-    if (clients[dcn]) {
-      res.send(clients[dcn]);
-    } else {
-      res.status(404).send('DCN not found');
-    }
-  });
-};
-
 const clients = {
   123456789: {
     dcn: '123456789',
@@ -82,4 +71,15 @@ const clients = {
       ]
     }
   }
+};
+
+module.exports = function loginRoute(app) {
+  app.get('/client/:dcn', (req, res) => {
+    const dcn = req.params.dcn;
+    if (clients[dcn]) {
+      res.send(clients[dcn]);
+    } else {
+      res.status(404).send('DCN not found');
+    }
+  });
 };
