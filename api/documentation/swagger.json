@@ -78,6 +78,33 @@
           }
         }
       }
+    },
+    "/client/{department-client-number}": {
+      "get": {
+        "summary": "Checks if a DCN matches a client",
+        "description": "Given a DCN, this method returns true if the DCN is valid and matches a client; otherwise it returns false",
+        "parameters": [
+          {
+            "name": "department-client-number",
+            "in": "path",
+            "description": "Department client number to check"
+          }
+        ],
+        "tags": [
+          "client", "dcn"
+        ],
+        "responses": {
+          "200": {
+            "description": "Response if the DCN is valid and matches a real client",
+            "schema": {
+              "$ref": "#/definitions/Client"
+            }
+          },
+          "404": {
+            "description": "Response if the DCN is valid but does not match a client"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -110,8 +137,175 @@
         }
       }
     },
+    "Client": {
+      "type": "object",
+      "properties": {
+        "dcn": {
+          "type": "string",
+          "description": "The department client number for this client",
+          "required": true
+        },
+        "people": {
+          "$ref": "#/definitions/people",
+          "required": true
+        },
+        "eligibility": {
+          "type": "string",
+          "description": "Medicaid eligibility code/descriptive text",
+          "required": true
+        },
+        "coverage": {
+          "type": "string",
+          "description": "Coverage code/descriptive text",
+          "required": true
+        },
+        "spenddown": {
+          "$ref": "#/definitions/spenddown",
+          "required": true
+        }
+      }
+    },
+    "people": {
+      "type": "object",
+      "description": "The people covered by this DCN",
+      "properties": {
+        "primary": {
+          "type": "string",
+          "description": "The full name of the primary client for the DCN",
+          "required": true
+        },
+        "others": {
+          "type": "array",
+          "description": "Full names of all other members on the DCN",
+          "items": {
+            "type": "string"
+          },
+          "required": true
+        },
+        "address": {
+          "type": "array",
+          "description": "Address of the client; each item in the array corresponds to an address line",
+          "items": {
+            "type": "string"
+          },
+          "required": true
+        },
+        "phone": {
+          "type": "string",
+          "description": "Client's phone number",
+          "required": true
+        }
+      }
+    },
+    "spenddown": {
+      "type": "object",
+      "description": "Spend down information",
+      "properties": {
+        "monthlyAmount": {
+          "type": "number",
+          "description": "The total spend down dollar amount due each month",
+          "required": true
+        },
+        "owed": {
+          "type": "number",
+          "description": "The total spend down dollar amount still owed for coverage to begin",
+          "required": true
+        },
+        "contributions": {
+          "type": "array",
+          "descriptions": "Contributions towards the client's spend down",
+          "items": {
+            "$ref": "#/definitions/spenddown-contribution"
+          },
+          "required": true
+        },
+        "paymentHistory": {
+          "type": "array",
+          "description": "History of payments",
+          "items": {
+            "$ref": "#/definitions/payment"
+          },
+          "required": true
+        }
+      }
+    },
+    "spenddown-contribution": {
+      "type": "object",
+      "description": "A spend down contribution",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "description": "The dollar amount of the contribution",
+          "required": true
+        },
+        "status": {
+          "type": "string",
+          "description": "The kind of contribution",
+          "enum": [
+            "paid",
+            "unpaid",
+            "direct"
+          ],
+          "required": true
+        },
+        "to": {
+          "type": "string",
+          "description": "Who the contribution was paid to or incurred from, or absent for direct contributions",
+          "required": false
+        }
+      }
+    },
+    "payment": {
+      "type": "object",
+      "description": "A payment",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "description": "The dollar amount of the payment",
+          "required": true
+        },
+        "received": {
+          "$ref": "#/definitions/date",
+          "description": "The date the payment was received",
+          "required": true
+        },
+        "applied": {
+          "$ref": "#/definitions/date",
+          "description": "The date the payment was applied",
+          "required": true
+        },
+        "month": {
+          "$ref": "#/definitions/coverage-month",
+          "description": "The coverage month that the payment was applied to",
+          "required": true
+        }
+      }
+    },
+    "date": {
+      "type": "number",
+      "description": "A data expressed in Javascript epoch time, as the milliseconds since midnight, January 1, 1970, UTC"
+    },
+    "coverage-month": {
+      "type": "object",
+      "description": "A start and end date describing one coverage month",
+      "properties": {
+        "start": {
+          "$ref": "#/definitions/date",
+          "description": "The start date of the month",
+          "required": true
+        },
+        "end": {
+          "$ref": "#/definitions/date",
+          "description": "The end date of the month",
+          "required": true
+        }
+      }
+    },
     "Eligibility": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+
+      }
     }
   }
 }

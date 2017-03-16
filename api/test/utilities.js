@@ -11,7 +11,8 @@ module.exports.getMockHandlerArguments = () => {
     req: {
       get: sinon.stub().returns(module.exports.requestOrigin),
       method: '',
-      headers: { }
+      headers: { },
+      params: { }
     },
     res: {
       header: sinon.spy(),
