@@ -16,12 +16,12 @@ FRONTEND_NAME="missouri-medicaid-prototype-frontend"
 # This directory is used to persist the CF credentials
 mkdir -p $HOME/.cf
 
-This wonderful image pulls the `cf` tool along with the
-`autopilot` plugin
+# This wonderful image pulls the `cf` tool along with the
+# `autopilot` plugin
 docker pull adelevie/cf-cli:latest
 
-For some reason, aliases aren't working here
-so we're using this function instead
+# For some reason, aliases aren't working here
+# so we're using this function instead
 cf_run() {
  docker run \
    --rm \
