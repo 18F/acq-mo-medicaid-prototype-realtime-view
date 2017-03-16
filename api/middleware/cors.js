@@ -4,7 +4,18 @@ module.exports = function cors(app, schema) {
   app.use((req, res, next) => {
     // Get the associated schema for this path
     const urlPath = url.parse(req.url).pathname;
-    const pathSchema = schema.paths[urlPath];
+    let pathSchema = schema.paths[urlPath];
+
+    if (!pathSchema) {
+      const paths = Object.keys(schema.paths);
+      for (const path of paths) {
+        const swaggerPathRegex = new RegExp(path.replace(/{([^}]+)}/, '(.+)'));
+        if (swaggerPathRegex.test(urlPath)) {
+          pathSchema = schema.paths[path];
+          break;
+        }
+      }
+    }
 
     if (pathSchema) {
       // Get the list of methods that this path supports,

@@ -31,13 +31,17 @@ tape.test('middleware/cors', (test) => {
         '/test2': {
           get: { },
           put: { }
+        },
+        '/test3/{parameter}': {
+          get: { }
         }
       }
     };
 
     const expectedMethods = {
       '/test1': 'GET,POST',
-      '/test2': 'GET,PUT'
+      '/test2': 'GET,PUT',
+      '/test3/{parameter}': 'GET'
     };
 
     corsModule(app, schema);
@@ -60,6 +64,17 @@ tape.test('middleware/cors', (test) => {
       unsupportedPathTest.ok(mocks.res.sendStatus.calledWith(404), 'HTTP status code 404 is sent');
       unsupportedPathTest.ok(mocks.next.notCalled, 'next is not called');
       unsupportedPathTest.end();
+    });
+
+    headersTest.test('where the path has parameters', (parameterPathTest) => {
+      const mocks = utils.getMockHandlerArguments();
+      mocks.req.url = '/test3/param';
+      handler(mocks.req, mocks.res, mocks.next);
+      // This is the URL that should have been matched, so that's the one we should check against
+      mocks.req.url = '/test3/{parameter}';
+      setsHeaders(mocks.req, mocks.res, parameterPathTest);
+      parameterPathTest.ok(mocks.next.calledOnce, 'next is called');
+      parameterPathTest.end();
     });
 
     headersTest.test('where the method is not OPTIONS', (notOptionsRequestTest) => {
