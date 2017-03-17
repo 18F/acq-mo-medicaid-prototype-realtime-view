@@ -5,7 +5,7 @@
     "description": "Prototype API for retrieving data from Missouri Medicaid systems and providing it to consumers in a modern, RESTful way.",
     "version": "1.0.0"
   },
-  "host": "missouri-medicaid-prototype-api.app.cloud.gov",
+  "host": "mo-medicaid-prototype-api.app.cloud.gov",
   "schemes": [
     "https"
   ],
