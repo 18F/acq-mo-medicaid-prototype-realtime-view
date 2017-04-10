@@ -38,7 +38,7 @@ export default function paymentHistoryRow(props) {
                 <h6>Applied to</h6>
               </th>
               <td>
-                <Date value={props.month.start} /> - <Date value={props.month.end} />
+                {props.month}
               </td>
             </tr>
           </tbody>
