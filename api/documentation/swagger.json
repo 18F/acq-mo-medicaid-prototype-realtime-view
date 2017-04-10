@@ -274,7 +274,7 @@
           "required": true
         },
         "month": {
-          "$ref": "#/definitions/coverage-month",
+          "type": "string",
           "description": "The coverage month that the payment was applied to",
           "required": true
         }

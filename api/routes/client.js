@@ -33,40 +33,28 @@ const clients = {
       ],
       paymentHistory: [
         {
-          amount: 100,
-          received: Date.UTC(2017, 1, 9),
-          applied: Date.UTC(2017, 1, 10),
-          month: {
-            start: Date.UTC(2017, 1, 10),
-            end: Date.UTC(2017, 2, 9)
-          }
+          amount: 20,
+          received: Date.UTC(2017, 2, 10),
+          applied: Date.UTC(2017, 2, 11),
+          month: 'March 2017'
         },
         {
           amount: 100,
-          received: Date.UTC(2017, 0, 9),
-          applied: Date.UTC(2017, 0, 10),
-          month: {
-            start: Date.UTC(2017, 0, 10),
-            end: Date.UTC(2017, 1, 9)
-          }
+          received: Date.UTC(2017, 0, 28),
+          applied: Date.UTC(2017, 0, 30),
+          month: 'February 2017'
         },
         {
           amount: 50,
-          received: Date.UTC(2016, 11, 1),
-          applied: Date.UTC(2016, 11, 1),
-          month: {
-            start: Date.UTC(2016, 11, 1),
-            end: Date.UTC(2016, 11, 31)
-          }
+          received: Date.UTC(2017, 0, 16),
+          applied: Date.UTC(2017, 0, 17),
+          month: 'January 2017'
         },
         {
           amount: 100,
           received: Date.UTC(2016, 9, 15),
           applied: Date.UTC(2016, 9, 16),
-          month: {
-            start: Date.UTC(2016, 9, 16),
-            end: Date.UTC(2016, 10, 15)
-          }
+          month: 'December 2016'
         }
       ]
     }
