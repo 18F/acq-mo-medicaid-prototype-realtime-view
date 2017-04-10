@@ -40,4 +40,4 @@ cd ..
 
 # Log into CF and push
 cf_run login -a $API -u $CF_USERNAME -p $CF_PASSWORD -o $ORG -s $SPACE
-cf_run zero-downtime-push -f manifest.yml
+cf_run push -f manifest.yml
