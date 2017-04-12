@@ -20,16 +20,19 @@ module.exports = function cors(app, schema) {
     if (pathSchema) {
       // Get the list of methods that this path supports,
       // and send that in the CORS response.
-      const supportedMethods = Object.keys(pathSchema).map(verb => verb.toUpperCase()).join(',');
-      res.header('Access-Control-Allow-Methods', supportedMethods);
+      const supportedMethods = Object.keys(pathSchema).map(verb => verb.toUpperCase());
+      // const supportedMethods = Object.keys(pathSchema).map(verb => verb.toUpperCase()).join(',');
+      res.header('Access-Control-Allow-Methods', supportedMethods.join(','));
       res.header('Access-Control-Allow-Origin', req.get('origin'));
       res.header('Access-Control-Allow-Headers', 'Accepts, Authorization, Content-Length, Content-Type');
 
       if (req.method === 'OPTIONS') {
         // If it's an OPTIONS request, just bail out here.
         res.sendStatus(200);
-      } else {
+      } else if (supportedMethods.includes(req.method)) {
         next();
+      } else {
+        res.sendStatus(405);
       }
     } else {
       // If the path doesn't exist, 404.
