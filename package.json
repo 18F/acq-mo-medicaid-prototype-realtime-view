@@ -4,7 +4,7 @@
   "description": "## Running locally",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint --fix 'api/middleware/**/*.js' 'api/routes/**/*.js' 'api/*.js' 'web/src/**/*.js'",
+    "lint": "eslint --fix 'api/middleware/**/*.js' 'api/routes/**/*.js' 'api/*.js' 'api/test/**/*.js' 'web/src/**/*.js'",
     "test": "istanbul cover tape -- 'api/test/**/*.js'"
   },
   "repository": {
