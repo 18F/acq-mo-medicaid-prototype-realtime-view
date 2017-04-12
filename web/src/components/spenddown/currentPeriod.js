@@ -18,7 +18,7 @@ function getContributions(contributions) {
 export default function currentPeriod(props) {
   return (
     <div className="box">
-      <h3>Current period</h3>
+      <h3>{props.period}</h3>
 
       <h6>Monthly spend down amount</h6>
       <Dollars className="big" value={props.monthlyAmount} />
@@ -33,6 +33,7 @@ export default function currentPeriod(props) {
 }
 
 currentPeriod.propTypes = {
+  period: React.PropTypes.string.isRequired,
   monthlyAmount: React.PropTypes.number.isRequired,
   owed: React.PropTypes.number.isRequired,
   contributions: React.PropTypes.arrayOf(React.PropTypes.shape({
