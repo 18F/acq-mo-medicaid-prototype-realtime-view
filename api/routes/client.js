@@ -13,6 +13,7 @@ const clients = {
     eligibility: 'Medicaid eligibility code here',
     coverage: 'Not covered',
     spenddown: {
+      period: 'March 2017',
       monthlyAmount: 100.00,
       owed: 20,
       contributions: [
@@ -28,7 +29,7 @@ const clients = {
         },
         {
           amount: 20,
-          status: 'direct'
+          status: 'direct payment'
         }
       ],
       paymentHistory: [
