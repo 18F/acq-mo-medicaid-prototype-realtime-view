@@ -26,7 +26,10 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.0",
     "istanbul": "^0.4.5",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.3",
     "sinon": "^1.17.7",
+    "swagger-parser": "^3.4.1",
     "tape": "^4.6.3"
   }
 }
