@@ -69,6 +69,7 @@ tape.test('middleware/cors', (test) => {
     headersTest.test('where the path has parameters', (parameterPathTest) => {
       const mocks = utils.getMockHandlerArguments();
       mocks.req.url = '/test3/param';
+      mocks.req.method = 'GET';
       handler(mocks.req, mocks.res, mocks.next);
       // This is the URL that should have been matched, so that's the one we should check against
       mocks.req.url = '/test3/{parameter}';
