@@ -200,6 +200,11 @@
       "type": "object",
       "description": "Spend down information",
       "properties": {
+        "period": {
+          "type": "string",
+          "description": "The month and year that this spend down information applies to.  Most likely the current active period.",
+          "required": true
+        },
         "monthlyAmount": {
           "type": "number",
           "description": "The total spend down dollar amount due each month",
