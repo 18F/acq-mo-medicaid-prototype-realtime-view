@@ -112,8 +112,7 @@
       "properties": {
         "realName": {
           "type": "string",
-          "description": "The user's real name as an arbitrary string.",
-          "required": true
+          "description": "The user's real name as an arbitrary string."
         },
         "role": {
           "type": "string",
@@ -122,47 +121,41 @@
             "provider",
             "state"
           ],
-          "description": "The user's role in the system",
-          "required": true
+          "description": "The user's role in the system"
         },
         "eligibility": {
-          "$ref": "#/definitions/Eligibility",
-          "required": true
+          "$ref": "#/definitions/Eligibility"
         },
         "token": {
           "type": "string",
-          "description": "JWT token representing the user",
-          "required": true
+          "description": "JWT token representing the user"
         }
-      }
+      },
+      "required": [ "realName", "description", "eligibility", "token" ]
     },
     "Client": {
       "type": "object",
       "properties": {
         "dcn": {
           "type": "string",
-          "description": "The department client number for this client",
-          "required": true
+          "description": "The department client number for this client"
         },
         "people": {
-          "$ref": "#/definitions/people",
-          "required": true
+          "$ref": "#/definitions/people"
         },
         "eligibility": {
           "type": "string",
-          "description": "Medicaid eligibility code/descriptive text",
-          "required": true
+          "description": "Medicaid eligibility code/descriptive text"
         },
         "coverage": {
           "type": "string",
-          "description": "Coverage code/descriptive text",
-          "required": true
+          "description": "Coverage code/descriptive text"
         },
         "spenddown": {
-          "$ref": "#/definitions/spenddown",
-          "required": true
+          "$ref": "#/definitions/spenddown"
         }
-      }
+      },
+      "required": [ "dcn", "people", "eligibility", "coverage", "spenddown" ]
     },
     "people": {
       "type": "object",
@@ -170,31 +163,28 @@
       "properties": {
         "primary": {
           "type": "string",
-          "description": "The full name of the primary client for the DCN",
-          "required": true
+          "description": "The full name of the primary client for the DCN"
         },
         "others": {
           "type": "array",
           "description": "Full names of all other members on the DCN",
           "items": {
             "type": "string"
-          },
-          "required": true
+          }
         },
         "address": {
           "type": "array",
           "description": "Address of the client; each item in the array corresponds to an address line",
           "items": {
             "type": "string"
-          },
-          "required": true
+          }
         },
         "phone": {
           "type": "string",
-          "description": "Client's phone number",
-          "required": true
+          "description": "Client's phone number"
         }
-      }
+      },
+      "required": [ "primary", "others", "address", "phone" ]
     },
     "spenddown": {
       "type": "object",
@@ -202,31 +192,28 @@
       "properties": {
         "monthlyAmount": {
           "type": "number",
-          "description": "The total spend down dollar amount due each month",
-          "required": true
+          "description": "The total spend down dollar amount due each month"
         },
         "owed": {
           "type": "number",
-          "description": "The total spend down dollar amount still owed for coverage to begin",
-          "required": true
+          "description": "The total spend down dollar amount still owed for coverage to begin"
         },
         "contributions": {
           "type": "array",
           "descriptions": "Contributions towards the client's spend down",
           "items": {
             "$ref": "#/definitions/spenddown-contribution"
-          },
-          "required": true
+          }
         },
         "paymentHistory": {
           "type": "array",
           "description": "History of payments",
           "items": {
             "$ref": "#/definitions/payment"
-          },
-          "required": true
+          }
         }
-      }
+      },
+      "required": [ "monthlyAmount", "owed", "contributions", "paymentHistory" ]
     },
     "spenddown-contribution": {
       "type": "object",
@@ -234,8 +221,7 @@
       "properties": {
         "amount": {
           "type": "number",
-          "description": "The dollar amount of the contribution",
-          "required": true
+          "description": "The dollar amount of the contribution"
         },
         "status": {
           "type": "string",
@@ -244,15 +230,14 @@
             "paid",
             "unpaid",
             "direct"
-          ],
-          "required": true
+          ]
         },
         "to": {
           "type": "string",
-          "description": "Who the contribution was paid to or incurred from, or absent for direct contributions",
-          "required": false
+          "description": "Who the contribution was paid to or incurred from, or absent for direct contributions"
         }
-      }
+      },
+      "required": [ "amount", "status" ]
     },
     "payment": {
       "type": "object",
@@ -260,45 +245,26 @@
       "properties": {
         "amount": {
           "type": "number",
-          "description": "The dollar amount of the payment",
-          "required": true
+          "description": "The dollar amount of the payment"
         },
         "received": {
           "$ref": "#/definitions/date",
-          "description": "The date the payment was received",
-          "required": true
+          "description": "The date the payment was received"
         },
         "applied": {
           "$ref": "#/definitions/date",
-          "description": "The date the payment was applied",
-          "required": true
+          "description": "The date the payment was applied"
         },
         "month": {
           "type": "string",
-          "description": "The coverage month that the payment was applied to",
-          "required": true
+          "description": "The coverage month that the payment was applied to"
         }
-      }
+      },
+      "required": [ "amount", "received", "applied", "month" ]
     },
     "date": {
       "type": "number",
       "description": "A data expressed in Javascript epoch time, as the milliseconds since midnight, January 1, 1970, UTC"
-    },
-    "coverage-month": {
-      "type": "object",
-      "description": "A start and end date describing one coverage month",
-      "properties": {
-        "start": {
-          "$ref": "#/definitions/date",
-          "description": "The start date of the month",
-          "required": true
-        },
-        "end": {
-          "$ref": "#/definitions/date",
-          "description": "The end date of the month",
-          "required": true
-        }
-      }
     },
     "Eligibility": {
       "type": "object",

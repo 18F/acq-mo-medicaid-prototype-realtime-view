@@ -69,6 +69,7 @@ tape.test('middleware/cors', (test) => {
     headersTest.test('where the path has parameters', (parameterPathTest) => {
       const mocks = utils.getMockHandlerArguments();
       mocks.req.url = '/test3/param';
+      mocks.req.method = 'GET';
       handler(mocks.req, mocks.res, mocks.next);
       // This is the URL that should have been matched, so that's the one we should check against
       mocks.req.url = '/test3/{parameter}';
@@ -78,11 +79,28 @@ tape.test('middleware/cors', (test) => {
     });
 
     headersTest.test('where the method is not OPTIONS', (notOptionsRequestTest) => {
-      const mocks = utils.getMockHandlerArguments();
-      mocks.req.url = '/test1';
-      handler(mocks.req, mocks.res, mocks.next);
-      setsHeaders(mocks.req, mocks.res, notOptionsRequestTest);
-      notOptionsRequestTest.ok(mocks.next.calledOnce, 'next is called');
+      notOptionsRequestTest.test('where the method is not supported', (unsupportedMethodTest) => {
+        const mocks = utils.getMockHandlerArguments();
+        mocks.req.url = '/test1';
+        mocks.req.method = 'PUT';
+        handler(mocks.req, mocks.res, mocks.next);
+        setsHeaders(mocks.req, mocks.res, unsupportedMethodTest);
+        unsupportedMethodTest.ok(mocks.res.sendStatus.calledOnce, 'HTTP response status is set once');
+        unsupportedMethodTest.ok(mocks.res.sendStatus.calledWith(405), 'HTTP status code 405 is sent');
+        unsupportedMethodTest.ok(mocks.next.notCalled, 'next is not called');
+        unsupportedMethodTest.end();
+      });
+
+      notOptionsRequestTest.test('where the method is supported', (supportedMethodTest) => {
+        const mocks = utils.getMockHandlerArguments();
+        mocks.req.url = '/test1';
+        mocks.req.method = 'GET';
+        handler(mocks.req, mocks.res, mocks.next);
+        setsHeaders(mocks.req, mocks.res, supportedMethodTest);
+        supportedMethodTest.ok(mocks.next.calledOnce, 'next is called');
+        supportedMethodTest.end();
+      });
+
       notOptionsRequestTest.end();
     });
 
